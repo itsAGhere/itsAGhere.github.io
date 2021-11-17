@@ -1,0 +1,427 @@
+-------------------------------------------------------------------------------------------------------------------------------
+EXPRESS
+-------------------------------------------------------------------------------------------------------------------------------
+
+express is same as the node package also this is like a frame work which helps us in creating a server for us
+normally it parse the input requests 
+
+the main difference between the libary and frame work is that 
+	the libary is a part of code that is written by other which we use as a part of our code say as a function or like a method 
+but 
+	frame work is a code in which we write a part of code inside the framework to make it work as how we want
+
+normally to install express we type npm install express
+
+before that we always should add the package.json 
+and then we install it 
+
+		--save is used in older ages to store the depend. to the package.json
+
+and we just require express in the index.js
+
+common notations are 
+	const express = require("express");
+	const app = express();
+
+to start the server we should tell the express to listen that is done with the method
+
+LISTEN
+
+	app.listen(3000, function)
+	example : app.listen(3000, ()=>{	})
+these 3000 is the port number in which we are hosting the server from express to reach the hosted server we go
+ 
+	localhost:(port_num)
+express make all the background work of sending the status code,content type, header & etc. 
+
+USE
+
+	app.use(()=>{ })
+normally when  ever a request is coming in this use function will run when we have it in the code 
+the request may be of any GET or SET or any thing that happens USE is called
+
+  express makes two object or response that is made for us
+
+app.use((req,res)=>{ })	//req is the request that is made in the bowser 	//res is the response that we can give to bowser
+
+to know more about the req we can just console.dir(req)
+
+
+WE SHOULD GO TO THE DOC OF EXPRESS WHICH WE CAN FIND MANY METHODS FOR BOTH RESPONSE AND REQUEST
+
+
+SEND
+	common or basic method in the response is the send which sends back the response using send
+		res.send('') 	
+normally if the res.send is given as string express automatically sets it as bodycontent header : html
+like if we give the res.send({key:value}) with some json file express sets the header automatically to application/json
+
+ROUTING
+
+this is a method to take the incoming request and match the request to the code and give it as the response
+
+app = express(); gives us a lot of method that can be used that for routing one of them is get request
+
+	GET
+
+this is done only for GET request 
+
+app.get(('request with pattern'),(req , res)=>{ res.send() })
+
+usually the home or route is done by simply giving / alone
+
+app.get(('/'),(res,req)=>{ res.send() }) //usually for home pages
+
+
+
+MAIN DIFFERENCE BETWEEN THESE TWO APP.GET() AND APP.USE()
+
+The routing methods, including app.get(), are convenience methods that help you align responses to requests more precisely. 
+They also add in support for features like parameters and next('route').
+
+Within each app.get() is a call to app.use(), so you can certainly do all of this with app.use() directly. 
+But, doing so will often require (probably unnecessarily) reimplementing various amounts of boilerplate code.
+
+Examples:
+
+For simple, static routes:
+
+app.get('/', function (req, res) {
+  // ...
+});
+vs.
+
+app.use('/', function (req, res, next) {
+  if (req.method !== 'GET' || req.url !== '/')
+    return next();
+
+  // ...
+});
+
+
+
+POST
+
+normally this is different request and common like a get request we use 
+
+app.post(('path'),(res,req)=>{ res,send() })
+
+OTHER HTTP VERBS
+
+	REFER THE DOCS 		POST	PUT	DELETE		GET
+
+DEFAULT CASE
+
+	normally a request only can be responed once at a time once we send thats all and so we use this default at the last 
+this is normally used if a request is made other than the code we gave it response with this default response and this is done by
+	app.get('*',(req,res)=>{ res.send(''i dont know that request)}) 
+
+DEFINE PATH NOT THE EXACT MATCH
+
+	normally in website it not the exact path that is matched usually the code is written with a pattern and this pattern is matched and response is given
+
+in express this is done usually by same method //	/r/:pathname is the format that is given to the code to match the req
+	app.get(('/r/:path'),()={ res.send()})
+:pathname is a params and this is used to get the informations
+
+	app.get(('/r/:path'),()={ 
+		const { path } = req.params;
+		res.send(`<h1>Browsing for ${path}`)
+	})
+we can also have multiple path that is like patterns 
+
+	app.get(('/r/:path1/:path2'),()={ 
+		const { path1, path2 } = req.params;
+		res.send(`<h1>Browsing for ${path1} in ${path2}`)
+	})
+you can see that there are two paths that is matched and can be responed with
+
+QUERY STRING 	?
+
+will normally be empty if no query string is given to see this or to get the query string which will be present in the req is taken by req.query
+
+app.get('/search',(req,res) =>{
+	console.log(req.query);		//req.query is the params that is present in the req object this is used to get the data 
+	res.send('HI')
+	})
+
+this req.query is object key: value pairs in which all the query are stored and can be access by the key
+
+if we have a query string of q
+app.get('/search',(req,res) =>{
+	const { q } = req.query; 
+	res.send(`this is ${q}`)
+	})
+
+this express handles multiple query for us and stores them in object
+
+
+NODEMAN
+
+what we need to do is to install this nodemon in out computer this normally keeps on checking for the files for any changes and it usually restarts the server
+we can normally install nodeman
+
+	npm i nodemon	//to install locally
+
+	npm i -g nodemon	//to install globally
+
+after installing it we can normally call this by  typing nodeman index.js file to run the server 
+
+------------------------------------------------------------------------------------------------------------------
+DYNAMIC WEBSITE
+------------------------------------------------------------------------------------------------------------------
+
+TEMPLATES
+	this is common html which becomes the basic code that suits for all with a loop
+
+EJS EMBEDDED JAVA SCRIPT
+	nunjucks	handlebar	jade	pug
+these are all Js that can be used to write in node 
+
+but the most common is EJS 	
+
+we have method in express which is app.set((properties),(value))
+now we are using view engine
+
+so the code is
+	app.set('view engine','ejs')
+
+also we need to install EJS
+
+to install we simply give 	npm i ejs
+
+	normally app.set() checks in the 
+			process.cwd()+./views
+	we can also change the check file refer the docs in ejs
+
+to change the check file
+	const path = require('path');	
+	app.set('views',path.join(__dirname, '/views'))
+
+
+the file that is to be used by the express in EJS should be named as .ejs
+
+now we can send the html sheet from the index.js  and to send the file we use the method we use the render function
+
+		app.set('/',(req,res)=>{
+			res.render('home.ejs')	
+		})
+
+<% 	'Scriptlet' tag, for control-flow, no output
+<%_ 	‘Whitespace Slurping’ Scriptlet tag, strips all whitespace before it
+<%= 	Outputs the value into the template (HTML escaped)
+<%- 	Outputs the unescaped value into the template
+<%# 	Comment tag, no execution, no output
+<%% 	Outputs a literal '<%'
+%> 	Plain ending tag
+-%> 	Trim-mode ('newline slurp') tag, trims following newline
+_%> 	‘Whitespace Slurping’ ending tag, removes all whitespace after it
+
+normally we use these syntax these are not JS or HTML syntax it more specific to ejs
+	<h1>your Random number <%= Math.floor(Math.random() * 10)+1 %></h1>
+this above is a simple example
+
+we can also add the function or logic in the indes.js and given as the params 
+	app.get('/rand',(req,res)=>{		//this is written in index.js all the logic
+		const num =  Math.floor(Math.random() * 10 ) + 1;
+		res.render('random',{ rand: num })
+	})
+
+no we can call this rand value in ejs file
+and the other thing is that the above code can also be written in this way
+
+	app.get('/rand',(req,res)=>{		//this is written in index.js all the logic
+		const num =  Math.floor(Math.random() * 10 ) + 1;
+		res.render('random',{ num })	//that {num : num}	key value with same name
+	})
+
+CONDITIONAL EJS	
+	We can have multiple response EJS that can be rendered to the user by simple keeping them in their own .get method
+
+normally we can set
+	app.get('/r/:pathname',(req,res)=>{
+		const { pathname} = req.params;
+		res.render('home',{ pathname });
+	})
+as you can see the :pathname is the path that is shown by the user and is given and thus express saves it for our use in params
+we destructure it by the 2nd line const { pathname } = req.params;	and now we have store the pathname from params
+and can be used 
+the 3rd line is to render the EJS file named home with the argument of pathname which can be accessed in the EJS file
+to make it work that the line 3 we should have given syntax of app.set('view engine',ejs); and views file should be set to
+app.set('view', path.join(__dirname,'/views'));
+
+    conditional syntax means nothing but the line inside the <% line %> wont be seen in the bowser but that is not comment
+that is the line is run as javascript 
+
+	<body>
+		<h1>Your rand num <%= num %></h1>
+	<% if(num % 2 === 0) { %>
+		<h2>NUMBER IS EVEN</h2>	
+	<% } else { %>
+		<h2>NUMBER IS ODD</h2>
+	</body>
+even we can  use 
+
+<h3><%= num%2===0 ? 'EVEN' : 'ODD' %></h3> //same out but conditional statement inside the non-escape EJS syntax
+
+	LOOPS IN EJS
+this is example from video345
+
+<body>
+	<h1>All the cats</h1>
+	<ul>
+		<% for (let cat of cats) { %>
+		<li>cat<li>	//this wont run because this doesnt get the value from the js because it doesnt evalute
+		<% } %>
+</body>
+
+
+<body>
+	<h1>All the cats</h1>
+	<ul>
+		<% for (let cat of cats) { %>
+		<li> <%= cat %> <li>	//this gets the job done because it uses the syntax to evalute and print data
+		<% } %>
+</body>
+
+refer video for more data transfer in video 346
+
+
+
+SERVING STATIC ASSETS IN EXPRESS
+
+	express.static(root , []) see in documentation
+
+app.use(express.static('public'))	//public is dir which has the HTML CSS JS 
+
+we can server the css file by using this express.static and we have a similar problem that is the path if we run the index.js 
+outside the dir then the express will search for public dir and throws an error to rectify this we need to change the path
+we should also link the stylesheet in the EJS sheet 
+
+	app.use(express.static(path.join(__dirname,'public')))
+
+BOOTSTRAP 
+	 video 348
+
+EJS & PARTIALS 
+	partials is something that is written in common for all the HTML sheets
+	this common code is written in separate HTML sheet and is added in other html sheet where it is need 
+	this partial dir also has the common HTML Sheet with extension as .ejs
+		<%- include('partials/head')%>
+
+
+-------------------------------------------------------------------------------------------------
+RESTful Routes
+------------------------------------------------------------------------------------------------
+GET VS POST 
+
+CHANGE METHOD CAN BE DONE DIRECTLY IN THE HTML SHEET IN THE FORM METHOD = "GET || POST"
+
+GET
+		normally get request is used to retrieve information is will post the information send to server in the Url like 
+		its book markable and urls are limited and so information that can be received in get req is limited
+	req.query
+
+POST 	
+	this is to post data to the server this is included in the req.body and we can send any type of data such as JSON also
+	we can also have query string 
+req.body
+
+
+EXPRESS POST ROUTES
+
+	this is so common in index.js in express we use the app.post(" ",( )=>{ })
+	data that is send from the post request can be accessed using req.body but it is normally undefined and this key: value pairs
+
+we need to tell the express that the form
+
+	app.use(express.urlencoded({extended: true}))	//we use this for form/html 
+to use other express refer the docs 	
+	for json	app.use(express.json())
+	//this use is nothing but it works on all type of requests
+
+now we can get the data from the console.log(req.body)
+we normally dont print the data as we do it above we usually desturcture the content and use to give response
+
+we can have as many as express parsing and is not atall a prob
+
+
+REST VIDEO 354
+
+	Representational State Transfer - REST
+
+this is like a guidlines that should be followed to connect the server and user end 
+
+this is nothing is worry about these are the pattern or the way we write our code like using the get and post with same endpoint can have
+different working function inside them because there are two different type of request
+
+to understand the pattern example
+		GET /comments - List all comments
+		POST /comments - create a new comment
+		GET /comments/:id - Get one comment (using ID)
+		PATCH /comments/:id - Update one comment
+		DELETE /cpmments/:id - Destroy one comment
+RESTfull Appilcation
+
+ CRUD FUNCTIONALITY -	Create Read Update Delete
+
+ROUTE	REDIRECT
+	
+	we can use this redirect to change the links that is like res.send() or res.render
+
+we do it by giving res.redirect('');
+	this is nothing but the redirect will give a status code of 302 to the bowser and so it follows back with the url
+ 
+--------------------------------------------------------------------------------------------
+UUID NPM 
+
+unique universal ID 	this is package which can be used to get automatic ID that will be created for us
+
+to use UUID we simply require it and also doc tell us to use the 
+		
+			const { v4: uuid } = require('uuid');
+
+and simply we can call it as 		id = uuid();
+
+-----------------------------------------------------------------------------------------------------
+
+PATCH REQ to Update
+
+app.patch is not the most common one as like a post get in the doc in express 
+and we can find it inside teh methods 
+we normally use this is patch or update a simple attachment 
+
+
+METHOD OVERRIDE
+
+but put is to reset all the value with the data that is send at that time
+but we know that from the bowser we have only two request that can be made from the bowser
+
+
+and to give other req from the html bowser we can use the methodOverride and is simply like faking the req from html side and
+
+This is a npm -package and we normally install this 
+
+npm i method-override
+
+and we have a lot of method to use to but we have studied to use it as the query value and but there is also header override value
+
+		const methodOverride = require('method-override')
+
+		app.use(methodOverride('_method'))
+
+	this _method can be anything that is simply a variable and we do that with _ is because we may not have any var name with _
+	
+in html form we can use this in the form
+
+	<form method= "POST" action = "/resource?_method=PATCH">
+		//content//
+	</form>
+
+this will tell the express to treat this post request as a PATCH request 
+
+delete method is also done in the same way
+
+!!!!!!!!NORMALLY WE SHOULD NOT MUTATE THE ARRAY AND MOST COMMONLY SHOULDNOT BE DONE IN REACT WORLD!!!!!!!!!!!!!
+
+and so we use the filter for the array and the delete will be working as it filters the data that we want to delete and has the other

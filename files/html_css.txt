@@ -1,0 +1,172 @@
+kishore8969@gmail.com
+kishor89
+!tab shortcut
+shift alt f shortcut
+short cut image
+<link rel="shortcut icon" type="image/x-icon" href="login.jpg"/>
+
+to remember if statement in short way is uysing && and operator
+all the bowser checks left side of && only if its true it goes to the right side
+ 
+pexels
+
+blockqoute
+
+:hover
+:focus
+:active
+nth-of-type()
+pseudo class
+**********padding
+*********border 
+********margin 
+display
+inline 
+block
+inline-block
+
+letter-spacing
+line-height
+:last-child //to call any last same mentioned ID 
+
+transition: <what type> <time> <style(ease-in ease-out ease-in-out)>
+
+text-transform:uppercase;
+box-sizing:border-box
+border-radius:px	;
+position
+static
+relative
+obsolute
+fixed
+transform: translate
+box shadow offset x | offset y | blur radius | color
+background-size
+background-position
+table 
+colspan
+rowspan
+
+
+
+flex bocks
+display : flex;
+flex-direction: row;
+flex-direction: column;
+justify-content: flex-start;
+justif-content: center;
+justify-content:space-between;
+justify-content:space-around;
+justify-content:space-evenly;
+//fit the content
+flex-wrap:wrap;
+flex-wrap:wrap-reverse;
+flex-wrap:nowrap;
+//row adjustments
+align-item: flex-start;
+align-item: flex-end;
+//align content works only with wrap
+align-content: space-between;
+works only for selected items
+align-self:center/flex-start;
+flex-basis: px;
+flex-grow:;
+flex-shrink:;
+
+@media{
+	.p{
+}
+#med{
+}
+}
+
+
+Bootstrap
+https://getbootstrap.com/
+
+container for grid mode
+container fuild
+type= button to tell is not submit or reset button
+button btn
+
+row 
+
+row border
+justify-content-start
+justify-content-end 
+jsutify-content-between
+
+col
+
+.col-
+.col-sm-
+.col-md-
+.col-lg-
+.col-xl-
+
+align-items-center 
+align-items-end
+align-items-start
+
+
+image fuild
+gutter for spacing content in the table 
+ 
+
+responsive site
+blockqoute 
+blockqoute-footer
+badge - span is used to put the badge class inside it
+it can be used in the button for giving them budges
+badge-pill
+
+ btn-group role=group
+
+class=alert role=alert
+alert-heading
+
+FORMS
+
+<div class="form-grouping></div>
+<input class="form-control">
+
+form-control-lg
+form-control-sm
+<select class="form-control">
+<option></option>
+
+<select multiple class="form-control">
+<option></option> 
+
+click box
+class="form-check"
+class="form-check-input"
+class="form-check-label"
+
+custom checkboxes
+class="custom-control custom-checkbox"
+class="custom-control-input"
+class="custom-control-label"
+
+radio button
+inline
+disabled
+
+switches
+
+
+icon 	<svg> scalable vector graphics
+
+utility function
+margin m 
+padding p
+d-inline
+d-block
+d-none
+
+
+DROP MENU
+SPINNER
+MODAL
+
+

@@ -1,0 +1,27 @@
+
+git init
+git add .
+git status
+git branch -M <branch_name>
+git commit -m "<message>"
+git remote add origin <http link>
+git push -u origin <branch_name>
+
+
+
+
+
+echo "# BankApp" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/akhshyganesh/BankApp.git
+git push -u origin main
+
+
+git remote add origin https://github.com/akhshyganesh/BankApp.git
+git branch -M main
+git push -u origin main	
+
+

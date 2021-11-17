@@ -1,0 +1,306 @@
+---------------------------------------------------------------------------------------------------------
+NODES
+---------------------------------------------------------------------------------------------------------
+
+https://nodejs.org/en/
+
+normally we must install the node js in our machine by using the above link 
+
+node js is a REPL read evaluate print loop
+
+to enter into node we type node and to exit we type .exit 
+
+we have a global variable which is the highiest bubble and where every thing live 
+ we can run a file from the node by simply typing node space file name executes the file
+and simply if we type node then it is opening node
+
+we have many things that is to be learned and to refer them we go to home page and use the doc and give the version and can be seen
+
+nvm is used to manage different version of node which may be needed
+
+the most common is process
+process.version
+process.release
+process.cwd() current working dir
+process.argv 	//we can give arguments 
+
+node js is used inside terminals to run the code without even opening the bowser 
+for this to work we should know how to install node and how to start node 
+and there are many docs that are to be learned
+normally let us see how to create a dir and file from the JS code file executing it from node JS 
+i know it sounds confusing let me say it once again we are gonna write a JS code which creates a dir and files inside dir upon calling the JS code
+this JS code is called from the node in terminal and to do this we use the fs from node
+
+fs is not directlty present in the gobal of node and so we must call it first we call it by 
+		const fs = require('fs');
+		fs.mkdir();
+		fs.writeFile();
+
+we to be noted is we have two type of function in all the function that is sync and async 
+
+async function have a callback immediately in the arg itself as 
+	fs.mkdir('dogs',{recursive: true },(err)=>{ if(err) throw err;})
+
+sync function dont have a callback and so we must include them in the try and catch block 
+	const fs = require('fs');
+		try{
+			fs.mkdir();
+			fs.writeFile();
+		}catch(e){
+			console.log(e);
+		}
+this is simple example of how raw node can be used to create a file and folder 
+
+many things can be done using node and but for now i am leaving it from notes because that all is the content and video num 319
+
+------------------------------------------------------------------------------------------------------------
+MODULES AND NPM 
+--------------------------------------------------------------------------------------------------------------
+
+Node has same like linking two html or Js file and obtain code 
+here it is named as module
+	
+REQUIRE 
+
+	to include two file we should give require(#);
+and to reference a file in the same folder ./fileName
+	require('./fileName');
+and when we require the file with code we dont get the code that is present inside the file because node uses a keyword 
+
+EXPORT
+
+this is spec word which is to be set in the file that is going to share data 
+we do this by 
+	const func(x,y) {
+		(x+y)
+	}
+	module.exports.func = func;
+
+we can simply give export.func = func; 	// but there are some downpoints in this 
+the downpoint is that when some export is set string than exporting func that are after this string export will no more reference and export because it becomes var
+
+if we dont export func or var inside the file then we cant have them in other file which will be linked to this file by using require
+
+we can also directly export it by 
+	module.exports.func = (x,y) => x+y;
+
+REQUIRING A DIRECTORY
+
+always index.js will be searched by node to export from a dir and the entire file will return only what index.js exports
+
+this is common that every project file will have a index.js that is the final or main file which is the application file with some of the user defined module files
+	we usually export the content to index.js and this index.js will be the final app file which in turn will be required by us to use the application as part of
+our application and to require the entire directory from outside is done by 
+		require('./folderName')
+
+this is all what modules are
+
+---------------------------------------------------------------------------------------------------------------------------
+NPM NODE PACKAGE MANAGER
+---------------------------------------------------------------------------------------------------------------------------
+
+This is nothing but a manager that contains modules that are created by other people and which we include in out develop and use them 
+
+the  most common module are like 	express 	react		etc.,
+
+we have npm in the node itself and we can see different commands by typing npm in node 
+
+
+INSTALL PACKAGES
+
+normally install means it is to include the module that are present in npm
+this most commonly done because this is why we use NPM to use others code and we do this simply by
+	npm install (module-Name-from-npm)
+once we install the package it creates a node_module which node stores all the packages we install to make our code work with the code other have written 
+	
+
+	require packages
+		we do this not by using ./ because this can directly called by the name in the npm doc require('packageName');
+
+and all the function created will be present in the doc of the npm and we can call them in our app.js and use the return value from the packages
+ 	*the main thing is we cant remember the funciton that might be created in the package so always refer to the doc*
+
+
+GLOBAL INSTALLING PACKAGES
+
+the term itself tells us that GLOBAL is like installing the package to overall node and this can be done for accessing the package from anywhere in the computer
+normal installation will only install stuffs inside the code file and cannot be called outside the file 
+
+and if we try to add the package in GLOBAL our computer wont allow and so we can google and fix this not allowed issue or permission issue
+
+	npm i -g (packageName);
+
+now the package is installed Globally but if we require the global package it wont get linked and to link them we should give npm link (packageName) in node in the workdir
+and now we can require the package and use, its not locally installed it is linked
+
+
+PACKAGE.JSON
+
+in all the installed package we can see a package.json and also we would have seen a warning while installing
+	this package.json is a over view file which has the meta data that is the information of the application and the main thing is to see the Dependencies
+this dependencies are the key value objects that contains the package that are installed in the file to run the application
+
+and this like a copy of file names from the Node_Module files that the packages are installed in 
+
+this file package.json can be created by us normally using touch but the key value pairs should be given properly and so we dont usually touch the file 
+
+we have a shortcut that creates the file for us with proper values in them and the syntax for this 	
+	
+	npm init
+
+when we give this init the node will start asking us for the value with respected key shown and we can name them there
+and once this package.json is created after that we can install the package from the npm and the warning wont popup
+and the dependencies will be auto added once we install the package and this super need, why will be followed
+
+INSTALLING DEPENDENCIES FROM THE PACKAGE.JSON 
+
+that is normally the NODE_MODULE file wont be shared with code and this is because there usually large sized and there just the local installed files which we can install 
+easily by the index.js file the require packages can be installed but there are things that is like version that also places a major role which we should manually select
+during installation  of packages and so we use this package.json file to do the need
+
+	this normally done by giving 			npm install
+
+where the node goes and searches for packages from the package.json and installs us with proper version and this is why we use package.json
+we give install in the dir where the package.json is  present  This is why i told package.json is important
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

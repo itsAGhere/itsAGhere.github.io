@@ -1,0 +1,761 @@
+First install the mongodb without the install MangoD as server and Install MongoDB Compass 
+second copy the path of installation with the bin folder 
+third open system environment click environment variable than under system variable goto path and give edit and add new and click OK
+
+mongod first to start the dataBase and to close clrt+c
+mongo is the mongoDB shell
+
+	
+
+
+
+-------------------------------------------------------------------------------
+DATABASE
+------------------------------------------------------------------------------
+Database  mongoDB
+
+SQL - Structured Query Language MySQL	Postgres	SQlite	Qracle		
+NoSQL - no Structured query Language MongoDB	Couch Db	Neo4j	Cassandra
+
+SQl is that which is predefined the heading that is the Schema and we should strickly follow them and we cant
+add other title file data without predefining them
+
+NoSQL	is that we dont need to follow a predefine the Schema we can add the data on the go once we start using 
+
+-----------------------------------------------------------------------------------
+
+MongoDB is commonly used with Node and Express in MEAN AND MERN stacks
+it is so easy to get it started 
+it plays particularly well with JS
+
+---------------------------------------------------------------------------------------------------
+
+TO INSTALL MONGO WE USE THIS LINK
+ 
+https://zarkom.net/blogs/how-to-install-mongodb-for-development-in-windows-3328
+
+https://www.mongodb.com/try
+
+*** Select the ‘Community Server’ option, make sure Windows is selected as your operating system and click the download button.
+
+*** Untick the ‘Install MongoD as a Service’, since we will be starting our database manually.
+
+*** Untick ‘Install MongoDB Compass’ as shown in the screenshot and click ‘Next’ again
+
+	Post-install Configuration
+
+*** First thing we will do is create the data folder for MongoDB.
+
+Start Windows Powershell (press the Windows Start button and type ‘powershell’ to find the shortcut) and type the following command:
+
+New-Item -ItemType directory -Path C:\data\db
+
+Powershell MongoDB data folder creation
+
+Alternatively, you can manually create these folder by going into your C:\ drive with the file explorer, then create a new folder called ‘data’
+
+Go into the newly created folder called ‘data’ and create a new folder inside of it, called ‘db’
+
+
+*** To easily start our mongod server and mongo terminal, we will create a Windows batch script file (.bat) which will serve as a shortcut for us.
+
+Open a new file in your code editor and paste in the following:
+
+@echo off
+cd "C:\mongodb\bin"
+start mongod.exe
+timeout 4
+start mongo.exe
+exit
+
+Then, press Save (Ctrl+S), navigate to your desktop and save the file as ‘StartMongo.bat’
+
+Sublime Text MongoDB configuration
+
+13) Now you will be able to start your mongod database server and the mongo terminal by double-clicking the StartMongo.bat file on your Desktop!
+
+
+---------------------------------------------------------------------------------------------------------------
+
+BASIC of MONGO SHELL
+
+we have a mongo shell which is also a REPL and we use it change the dataBase location or to use the security
+
+we should alway start the mongo in the background to start and then we can start using it in mongo shell
+
+we have some syntax
+
+If we type HELP in lowercase and hit enter we get the datas and that we can do in mongo
+
+SYNTAX	
+	db			//to show database in which we work in
+	show dbs		//to show all the database that is present 
+	use dataBaseName	//to create a database it simply checks whether it is present and if not then it creates
+	show collection 	//gives the data in db if present
+	ctrl+ c 		//to exit 
+
+normally when we create a new dataBase it doesnt not store it immediately it waits for data and 
+if data is present it stores the overall database 
+
+----------------------------------------------------------------------------
+DATA TYPE STORED IN MONGO IS BSON 
+----------------------------------------------------------------------------
+
+Mongo uses BSON FILE instead of JSON because JSON is slow 
+
+BSON - Binary JSON
+	it normally stores the data in binary and not as the JSON as string
+
+we have improved data support in BSON see docs
+
+To insert data we see the docs as usual in the server and not in cloud 
+
+	MONGO CRUD OPERATE
+
+	Insert Method 
+		normally mongoDB has a lot of method in inserting data that is 
+	db.collection.insertone({OBJECT})
+	db.collection.insertMany({OBJECT})
+	db.collection.insert({OBJECT})
+we can create many file even inside the overall DB 
+
+that is done by 
+
+	> use animalShelter
+	> db
+	animalShelter				
+	> show collections
+	> db.dogs.insert({name; "charlie", age:"3"})	//if sub div dog is present add otherwise create one and add
+	{	"acknowledged" : true,
+		"insertedId" : object("fd3h43fg432j7ff4g784")
+	}
+	> show collections	//inside animalShelter is there any sub divisions
+	dogs
+	> db.dogs.find()	//if sub div dog is present then print it 
+	{"_id" : Object("fd3h43fg432j7ff4g784"),name; "charlie", age:3}
+	> |
+
+FIND METHOD	return cursor
+
+	we can find data with the key that is an object 
+before we have simply said db.dogs.find() but now we are using
+	db.dogs.find({age:3})
+what this does is it gives us the value which matches the object that is present inside the ()
+we can have multiple arg inside the (arg1, arg2, arg3)
+
+
+findOne is a method to find only one and gives out the data 		return reference
+
+
+UPDATING in CRUD 
+
+	db.collection.updateOne(<filter>, <update>, <option>)
+	db.collection.updateMany(<filter>, <update>, <option>)
+	db.collection.replaceOne(<filter>, <update>, <option>)
+
+
+updateOne will only update the first match it finds 
+updateMany will update all that is matched
+
+Atomic operator
+in mongo we must use the operator
+	{$set: {<field>:<value>, <field>:<value>}}
+we can also multiple update values
+
+------------------------------------------------------------------------------
+also we can use the update to create a key value pair which were not originally present like to add new data to store
+-------------------------------------------------------------------------------
+
+we also have current date operator that is to be referred in docs 
+
+$currentDate : { lastModified: true } //default false
+
+db.cats.updateOne({age:6},{$set : {age:7}, $currentDate: {lastchanged: true}})	//lastmodified is var name can be changed
+	we can use multiple set function with ,  
+
+
+DELETE WITH MONGO
+
+	db.collection.deleteMany({OBJECT})
+	db.collection.deleteOne({OBJECT})
+
+this is all so simple to delete the collection we receive a acknowledge also with delete count
+to delete all we simply give ({})
+
+if we the data in nested object pairs we simple give it a shot with dot as we always do
+
+
+Additional Mongo Operators
+docs	reference	operators	query Operators
+
+	in this we have multiple operators refer in the docs
+	gt	gte	lt	lte	ne	nin	eq	
+	
+array function such as $in: [" "," "]	
+	ex	db.inventory.find({ qty: { $gt: 20 } })
+	
+
+---------------------------------------------------------------------------
+Drivers for mongo in docx
+---------------------------------------------------------------------------
+nodeJs driver that is a npm package that can be installed 
+
+but we are gonna use a mongoos that is a ODM object data mapper | object document mapper
+this is not only for mongo but for all DB 
+
+here mongoose is linker between nodeJS and mongo helps us build a model 
+
+MONGOOSE	 see docs for starting guide
+this is once per program and so we can refer the docs to add them
+
+workflow will be installing mongoose in node
+touch index.js to start 
+
+require mongoose 
+	const mongoose = require('mongoose');
+	mongoose.connect('mongodb://localhost:27017/movieApp',{ useNewUrlParser: true,  useUnifiedTopology: true });
+
+if the pointer is blank and sort of hangs than we have successfully connected and to know this we have some line of 
+code which is present in the mongoose docs hahaha lot of docs stuff HUH
+
+MODELS of MONGOOSE
+	we have a JS class which has a lot of function that can be done by this model 
+and so we need to use model to call the function
+to create a model we need to create  schema //SCHEMA is like a structure with type defined 
+
+	const movieSchema = new mongoose.Schema({
+		title: String;
+		year: Number;
+		score: Number
+	})		//this is just a concept in the JS side and doesnt do anything in DB
+
+now we are gonna create model and the name given should be properly and the var should be uppercase
+	const Movie = mongoose.model('Movie',movieSchema);
+	const amadeus = new Movie({ title: 'Amadeus', year: 1986, score: 9.2})
+
+to run the file we must do it inside node REPL and say .load index.js
+
+what this does is it creates a new instance of the movie which is not stored in the database yet but an instance is created 
+
+and this is model and so we can use the model function that we saw in the docs and one of them are the .save()
+function which will save it in the database
+
+refer video 380 for basics 
+
+normally we should add the data in the JS and then we should surely give .save() after the model is created 
+
+insertMany is a function that is present in the MONGOOSE platform 
+and we usually know this takes time and so it we should always use promise
+we can chain on a .then because it returns us with a .then method 
+
+Movie.insertMany([{...}])
+.then(data =>{ })
+.catch(err => { })
+
+
+
+now let us find the data in the DB from the mongoose
+for this let us open the doc of the mongoose api under module we can find the .find() which is so similar to
+we can use callback but this not recommended 
+
+.find() is not a promise but its a query of mongoose 
+
+we have .then that is thenable objects of mongoose
+
+to find all of them we can do as 
+run node 
+.load index.js
+movie.find({})
+	//this will all the data with other information which we dont need and so we use .then
+movie.find({}).then(data => console.log(data))
+	//this will give us all the data 
+when we use this find we get the value in array even if it returns one value it will be inside the array
+and if we need it without array than we can use the 
+
+findOne method	
+	model.findOne({}).then(m => console.log(m))
+
+Exec() method will gives a full promise and we should write with await and will give us full stack notes
+
+
+
+we also have the most common one that is findById('')
+
+	model.findById('_id').then(m => console.log(m))
+
+
+UPDATING USING MONGOOSE
+
+	model.updateMany()
+	model.update()
+	model.updateOne() // matches the first one found and updates
+	
+	model.updateOne({finding param},{update value}).then(res => console.log(res))
+	//here we dont get the updated value because its how it works
+to have two names we use
+
+	model.updateMany({title: {$in ['amadeus','stand by me']}},{score: 9.5}).then(res => console.log(res))
+
+
+here we dont get the updated value we get the nmodified values alone and so to get back the data object
+	we use model.findOneAndUpdate()	//this gives us the data by giving thenable object
+here we have a problem that is the returned value will give us the old value and if we want the new upated version we need give option
+that is new: true
+this will be  written as the third argv
+
+we should use 
+	mongoose.set('useFindAndModify', false)
+	usually this is true 
+
+
+
+
+DELETING WITH MONGOOSE
+
+ we have remove() but this doesnt involve and documentation and this doesnt return data back  it only gives deleyteCount
+we have 
+model.deleteMany({ })	//we can delete multiple data 
+model.findOneAndDelete({ })	//finds one and deletes but the find will always give us data back
+
+MONGOOSE VALIDATIONS
+
+what ever type we define in the Schema that will be defined and mongoose will expect it 
+we have the basic required validation and to write this we need to write the schema fully like with key value 
+
+	const productSchema = new mongoose.Schema({
+		name: {
+			type: string,
+			required: true
+		},
+		price: {
+			type: Number
+		}
+	});
+
+consr Product = mongoose.model('Product', productSchema);
+
+-- and if we give some information that are not in the schema and it will not throw error in mongoose 
+instead it wont add the data in database and it simply leaves it
+
+we also have
+	DEFAULT
+
+const productSchema = new mongoose.Schema({
+		name: {
+			type: string,
+			required: true
+		},
+		price: {
+			type: Number
+		},
+		onSale: {
+			type: boolean
+			default: false
+		}
+	});
+
+
+for string we have constraints to store it those are like 
+
+		lowercase()	uppercase()	trim()	//methods	
+
+	match	enum(means it should with the data given here)
+		
+	minlength maxlength are like default parameter that should given next to the type value
+
+
+
+we have some for number also see the docs
+
+to set the value as array we can even set it as [] 
+
+
+
+VALIDATING MONGOOSE UPDATE
+
+these validation we saw wont work when we update the data 
+
+to make the validatation on update we use runValidators: true in the third option or argv
+we can set custome error value that is the 
+	this is the validator can be given with the error message in  second of the value
+
+	min: [6, 'ERROR MESSAGE']
+
+MODEL INSTANCE METHODS
+
+we can add custome method 
+instance of product is when we create it and use the method that is like 	new model.save()
+	productSchema.methods.greet = function(){
+		console.log("HELLO")
+	}
+this type of method is liking writing a commmon method and which uses the this and can be called on any models
+and this is should defined in the product adn so every object in product will have the instance method
+
+we can also use this instance method and use it for the find and update also
+	productSchema.methods.greet = function(){
+		console.log("HELLO")
+		console.log(`this is from ${ this.name }`)
+	}
+
+	const Product = mongoose.model('Product', productSchema);
+
+	const findProduct = async () => {
+		const foundProduct = await Product.findOne( { name: 'mountain bike'} );
+		foundProduct.greet();
+	}
+	
+	findProduct();
+
+we can have this handy when we need to change the value with one click in the button 
+and so we can have a instance method to toggle 
+
+	productSchema.method.toggleOnSale = function () {
+		this.onSale = !this.onSale;
+		this.save();
+	}
+any time we hit save its async and takes time and we should wait
+this is used only when we directly work with the data in the code 
+
+
+
+
+STATIC METHOD
+
+statics methods are those which are present in the model itself
+this inside the method refers to the model and not the instance 
+
+we can use this the most common example is that we can have findByName or FindBy"some key in your object" this
+is done in static method
+
+
+
+MONGOOSE VIRTUALS
+
+this is tricky that we will not have the same value set in database but we can pretend that it is present
+database the most common exmaple given by the mongoose docs is
+
+	const personSchema = new mongoose.Schema({
+		first: string,
+		last: String
+	})
+
+	personSchema.virtual('fullName').get(function () {
+		return `${this.first} ${this.last}`
+	})
+	const Person = mongoose.model('Person', personSchema);
+
+MORE EXAMPLE SEE THE DOCS SURELY
+
+person name that is first name and last name
+
+
+MONGOOOSE MIDDLEWARE
+
+this is like delete an user from the social media where if you delete an user we must delete his 
+comments in others post and other things and to do this we can get help from the middleware
+
+we have two ways to do this one is having a callback function and calling this function at last or
+having the code in promise way which will return us a then and catch which can be used to run the	
+next set of code by then
+
+the basic example is with 
+
+	personSchema.pre('save', async function () {
+		console.log("ABOUT TO SAVE");		
+	})
+	personSchema.post('save', async function () {
+		console.log("JUST SAVED!!!!")
+	})
+
+	const Person = mongoose.model('Person', personSchema);
+
+
+node REPL
+	.load index.js
+
+	const akhshy = new Person({first: 'Akhshy',last: 'Ganesh'}) //this is only creating data
+	akhshy.save()	//this is only storing data
+
+o/p	ABOUT TO SAVE
+	JUST SAVED!!!!
+
+
+------------------------------------------------------------------
+Express + mongoose	Code in mongooose_with_express
+------------------------------------------------------------------
+
+now the first step that is to followed is installing the required npm packages and before that creating package.json
+
+after that in the index.js file we should require them all and common code for the mongoose is to be added to connect
+and check everything works and for this to work we need to run the mongoDB in the background
+
+and the models we create can be writen in separate file so that it will be easy and keep the code neat for debugginh
+
+in the model file we can create a js and start to write a Schema
+
+after wrting the Schema we need to comp the Schema as
+
+	const Product = mongoose.model('Product',productSchema);
+	
+	module.exports = Product;
+
+and now back in the index.js file we should require the model 
+	const Product = require('./models/product');
+
+
+we can have a seed file for starter and we need to connect the model file and copy 
+we also need to connect the mongo with mongoose
+
+just for development purpose SEED FILE
+
+and in this seed we can give the data in it and this file is used to start the DB with a sample data in it
+and we should also give the .save method
+
+const p = new Product({
+    name: 'Ruby Grapefruit',
+    price: 1.99,
+    category: 'fruit'
+})
+p.save()
+    .then(p => {
+        console.log(p)
+    })
+    .catch(e => {
+        console.log(e)
+    })
+
+ 
+and this is seed file is not connected to server just a file running to store the Data in DB
+
+we can insert Many 
+
+BUT THE THING IS IF ANY VALIDATION IS FAILING IT WILL STOP SAVING ALL
+
+---------------------------------------------------------------------------------
+
+PRODUCT INDEX
+
+we can now find the data from the DB by using
+the products that we have required at the top 
+NOTE this product is the Schema or the model that we have created and stored separately 
+
+we call them and ask for data by simply typing
+
+app.get('/',()={
+	const products = await Product.find({})	//this is the main thing that we use to take data from mongoBD by mongoose
+	console.log(products)
+})
+
+
+Product Detail
+
+	we can use the ID that is created for us by the mongo 
+	
+app.get('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findById(id)
+    res.render('products/show', { product })
+})
+
+by using the above code we can see that with the ID typed in the URL
+But this is not fair because we cannot know or type the big ID and so we use the the anchor tag
+
+
+SHOW PAGE WITH ANCHOR TAG 
+	<a href="/products/<%=product._id%>"><%= product.name %></a>
+
+that ._id can be used anywhere in the code to get the data from the server 
+
+ADDING NEW DETAILS
+
+main thing in the POST is we need to tell the express that we need the data from body 
+
+this is a async function because data from DB is slow and to await the save we use async
+	
+	app.use(express.urlencoded({ extended: true }));
+
+app.post('/products', async (req, res) => {
+    const newProduct = new Product(req.body);
+    await newProduct.save();
+    res.redirect(`/products/${newProduct._id}`)
+})
+
+
+UPDATE PRODUCT
+
+all this post and request data from the data base should be async function
+
+to post an request we need to install the method overRide
+
+WATCH VIDEO 400 for category selector
+
+<select name="category" id="category">
+            <% for(let category of categories){ %>
+            <option value="<%=category%>" <%= product.category === category ? 'selected': '' %>><%=category%></option>
+            <% } %>
+        </select>
+
+
+
+DELETING PRODUCT 
+
+	<form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+
+video 401
+
+app.delete('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const deletedProduct = await Product.findByIdAndDelete(id);
+    res.redirect('/products');
+})
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

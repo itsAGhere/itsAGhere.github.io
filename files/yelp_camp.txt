@@ -1,0 +1,489 @@
+YELP CAMP SECTION 39
+https://github.com/Colt/YelpCamp/tree/c12b6ca9576b48b579bc304f701ebb71d6f9879a
+
+
+SECTTION 40
+MIDDLEWARE- THE EXPRESS KEYWORD ------------	CODE IN MIDDLEWARE_INTRO_CODE
+
+middleware is just building block for everything this runs between the time when we req and and when we give res
+
+each middle ware object has access to the req and res to the route adn we can change or add the req that is 
+received this middleware can be the end of the req even but we dont need it to stop because 
+we need out middle ware should run and should not stop
+
+and so we need to use the main function name that is NEXT()
+
+to call the next method we need to add the next method in the arg of the app.get() or even in any route or .use
+and we should run the function in the last by saying next();
+
+
+
+MORGAN LOGGER MIDDLE
+
+the most common middleware which is used by most of the developer and this is a npm package and so 
+we should install the npm and require it in the express node
+
+and we have a lot of different method to use morgan and the most common are 'tiny'
+
+	app.use(morgan('tiny'));
+this is middleware which runs for any kind of req and if you see this morgan which is a middleware
+and as i said earlier where is the next method which should be called to run other app.get()
+WHY DONT WE SEE IT
+
+because as we already said this is a npm package and so the package is written as such we dont need to write
+the next explicitly write the next method
+
+
+DEFINING OUR OWN MIDDLEWARE
+
+this is so simple because middle is like we need to run this set of code for anything that happens or runs
+
+app.use(()=>{ })
+
+this will run for every request that is  made from the bowser and so we can use this when we are in need
+to run the set of code to run in all type or all kindaf request
+
+
+app.use((req, res, next) => {
+    console.log("THIS IS MY FIRST MIDDLEWARE!!!")
+    return next();
+    console.log("THIS IS MY FIRST MIDDLEWARE - AFTER CALLING NEXT()")
+})
+app.use((req, res, next) => {
+    console.log("THIS IS MY SECOND MIDDLEWARE!!!")
+    return next();
+})
+app.use((req, res, next) => {
+    console.log("THIS IS MY THIRD MIDDLEWARE!!!")
+    return next();
+})
+
+and by this above code we see that we surely need that next method otherwise we wont successfully
+send or pass the req to other routes to match and process the req and to give the response
+
+
+we can also match a particular path by giving the route in the arg and the callbacks 
+
+
+if you see this example below we have used this path because we need to run this middleware when ever we 
+use send a req for this route /dogs it will hit the middleware and we have next to redirect it to next 
+
+app.use('/dogs', (req, res, next) => {
+    console.log("I LOVE DOGS!!")
+    next();
+})
+
+app.get('/dogs', (req, res) => {
+    console.log(`REQUEST DATE: ${req.requestTime}`)
+    res.send('WOOF WOOF!')
+})
+
+the pattern which we are gonna see is the most common way of writting them separately 
+because we  might need this same function in multiple routes and so we can define them separately and call
+them by their name in the callbacks
+
+we can also write the middleware like this
+
+
+const verifyPassword = (req, res, next) => {
+    const { password } = req.query;
+    if (password === 'chickennugget') {
+        next();
+    }
+    res.send("YOU NEED A PASSWORD!")
+}
+
+app.get('/secret', verifyPassword, (req, res) => {
+    res.send('MY SECRET IS: Sometimes I wear headphones in public so I dont have to talk to anyone')
+})
+
+We can also use this req,res method that can be created and passed to the next route handler macthed
+for example we can set this by
+
+
+app.use((req, res, next) => {
+    req.requestTime = Date.now();
+    console.log(req.method, req.path);
+    next();
+})
+
+app.get('/', (req, res) => {
+    console.log(`REQUEST DATE: ${req.requestTime}`)
+    res.send('HOME PAGE!')
+})
+
+app.get('/dogs', (req, res) => {
+    console.log(`REQUEST DATE: ${req.requestTime}`)
+    res.send('WOOF WOOF!')
+})
+
+By the above example you can see that the req.requestTime is passed to other route Handler that is matched
+
+
+we also have other methods that are buldin
+
+	req.method	req.path	res.status(404)
+
+
+
+we can also have common or say as like a default matching path and default method
+
+app.use((req, res) => {
+    res.status(404).send('NOT FOUND!')
+})
+
+NOTE this app.use must be kept in the end because this matches with everything that express tries to match 
+and so we need to keep this in last so we can check all the route handlers and than if we dont have the match
+we can run this last app.use
+
+
+SECTION 41 	ADDING BASIC STYLES
+
+https://github.com/Colt/YelpCamp/tree/509354878f5cbd0fc8325a2e0da347075c722740
+
+
+We have a package EJS-MATE
+	we have boilerPlates that is in layers
+
+video 421
+
+const ejsMate = require('ejs-mate');
+app.engine('ejs', ejsMate)
+app.set('view engine', 'ejs');
+
+we can have separate boilerplates in the layout file which can be used in the other campground ejs files
+
+simply we use the boilerplate by writting it in the EJS file and use the ejs formate <%- body %>
+
+
+	this body will be passed with the value in the index page to teh boilerplate and  
+in the index file we should call this boiler file by writting
+
+	<% layout('layouts/boilerplate')%>
+
+and this layout line will look for the ejs file named boilerplate and will check for the ejslinks there
+and we have already given <%- body %> in the boilerplate file and so we can inject content in boilerplate
+from the layout line in the index.ejs file
+
+PARTIAL
+
+we can use partial and mix this with the ejs-mate and so we can combine them both
+
+to use the partial we can create a new file name partials and we have the ejs file with the code that is 
+going to be used by the index file or even we can add this partial to the boiler plate
+<%- include('../partials/navbar')%>
+
+
+BONUS IS TO SET THE BODY TO COVER THE OVERALL SIZE WE CAN USE TEH CLASS NAME AS D-FLEX FLEX-COLUMN VH-100
+THE FOOTER MT-AUTO
+
+SECTION - 42	HANDLING ERRORS IN EXPRESS APPS
+
+BuildIn Error handlers
+	chicken.key();
+	this is  an HTTP  request that we receive from express and this is not breaking things default error handler	
+
+In the docs we can see that express sees for statusCode and message when it finds a error
+
+
+To have an developer created error I can do it by 
+		throw new Error('Password Required!');
+this is catched by the express defaulter error handler and treated as Error 
+it responds default error status code with 500
+
+
+DEFINE AN CUSTOM ERROR HANDLER MIDDLE
+
+	app.use(function (err,req,res,next){
+		console.log('******************')
+		console.log('******ERROR*******')
+		console.log('******************')
+	})
+This is an error middle which we need to give four arg that is error, request, response, next but  to note that 
+we dont need to give them the same name and this is treated as the error middle ware
+
+IF AN ERROR IS THROWN OR IF WE THROW IT ALL GOES TO ERROR AND SEES AN MIDDLE WARE AND GOES THERE AND IF IT SEES
+NEXT IT GOES TO DEFAULTER HANDLER
+
+	app.use(function (err,req,res,next){
+		console.log('******************')
+		console.log('******ERROR*******')
+		console.log('******************')
+		next()
+	})
+This next normally will send the req to next matched route and in this case it will be the default error handler
+and if we do so we dont get the stack trace error why does this happen because
+
+If you see the default Error Handler we need to give the err data within the next.
+	next(err);
+this will trigger the next error handle middleware
+
+CUSTOM ERROR CLASS
+
+to define a class we simply say its class and we are gonna extend the Error class and call the super();
+and we do this inside the constructor to tell it we have those things to be set when we call the class
+
+class AppError extend Error {
+	constructor(message, status){
+		super();
+		this.status = status;
+		this.message = message;
+	}
+}
+module.export = AppError;
+
+we can use this in the code by simply giving 
+	throw new AppError("OH BOY ERROR",401)
+and this is done for an error we throw from the code
+
+and when express finds an error and throws an error it wont be the same because it wont hit the 
+custom error class we have created and so it will be the same old error message with the stack trace
+
+and to set the message and statusCode what we can do is the set the value in the error middleware we saw before
+
+app.use((err, req, res, next) =>{
+	const { status = 500 } = err;
+	res.status(status).send('ERRORRRRRRR!!!!')
+}) 
+we can also add the message and destruct the message and send the message
+
+app.use((err, req, res, next) =>{
+	const { status = 500, message = 'ERRORRRR'} = err;
+	res.status(status).send(message)
+})
+this is a general method to handle the error 
+
+to give an error message by  
+ 	throw new Error('hey')
+
+	console.log(new Error('hey'))
+we can do this is also in console  to check it
+
+
+HANDLING ASYNC ERROR
+
+	normally we know that asunc function should always be written inside the try() catch() block and so
+when ever we face any error we can handle them in the catch that is what we are gonna do here
+
+app.get('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findById(id)
+    if (!product) {
+        throw new AppError('Product Not Found', 404);
+    }
+    res.render('products/show', { product })
+})
+
+its not hitting my middleware that is error middleware but why and so lets see the docs and 
+when we see it if its an async function we need to give a next parameter and we have to give a next(err)
+with the arg and so express will know that it is an error and it tries to catch the err middleware
+
+app.get('/products/:id', async (req, res, next) => {
+    const { id } = req.params;
+    const product = await Product.findById(id)
+    if (!product) {
+        return next(new AppError('Product Not Found', 404));
+    }
+    res.render('products/show', { product })
+})
+
+if you see the above we have called the nextt middleware but still the code after next will basically run 
+and this error is seen in the console.log and so we should not let it run and so we can give an return to the
+next line so that we can stop the code from running unwanted things when we face error
+
+The above error were form us we throw  some error by the AppError and catch them but what happens when this error is 
+thrown by the some other say as express or mongoose we have a bad time and to be safe we need to run it in try
+
+app.post('/products', async (req, res, next) => {
+    try{
+	const newProduct = new Product(req.body);
+    	await newProduct.save();
+    	res.redirect(`/products/${newProduct._id}`)
+	}catch(e) {
+		next(e);
+	}
+}))
+
+we can successfully catch the error and pass this error to next which will safely go to the error middleware
+and if you see that we need wrap all the async function because express doesnt know what  or how to handle error
+and at starting these all seems simple and giving try and catch to 5 or 10 routes is simple but when it comes to many routes
+we may be not so lucky and so we have an idea that is writting a function with an name and calling them 
+where ever we have an Async function is present
+
+function wrapAsync(fn) {
+    return function (req, res, next) {
+        fn(req, res, next).catch(e => next(e))
+    }
+}
+
+app.get('/products/:id', wrapAsync(async (req, res, next) => {
+    const { id } = req.params;
+    const product = await Product.findById(id)
+    if (!product) {
+        throw new AppError('Product Not Found', 404);
+    }
+    res.render('products/show', { product })
+}))
+
+
+DIFFERENTIATING MONGOOSE ERRORS
+	rewatch video 437
+
+	and we have the different name to all the error that we face and mongoose errors also give us different
+name and this comes handy  to do something with name that is like
+
+	we can do different things for different name error
+
+const handleValidationErr = err => {
+    console.dir(err);
+    //In a real app, we would do a lot more here...
+    return new AppError(`Validation Failed...${err.message}`, 400)
+}
+
+app.use((err, req, res, next) => {
+    console.log(err.name);
+    //We can single out particular types of Mongoose Errors:
+    if (err.name === 'ValidationError') err = handleValidationErr(err)
+    next(err);
+})
+
+
+SECTION 43 YELPCAMP ERROR & VALIDATING DATA 
+
+https://github.com/Colt/YelpCamp/tree/5f3b3ec478c5bb35f2773c2048409a9418c78b60
+
+https://joi.dev/api/?v=17.4.0
+
+JOI is npm package which we can install it normally and 
+should be required in the top 
+
+
+const NAMESchema = Joi.object({
+	title: Joi.string().require(),
+	price: Joi.string().require().min(0)
+})
+
+we can also have multiple level of Joi.object by simply nesting them one inside another and
+and we can give the .require() too and it first checks for that and then moves inside the loop
+
+
+and after defining the Schema we must call this for validation as like our regExp
+
+NAMESchema.validate(req.body);
+
+this will give us the data inside the error and so we can destructure them and use it 
+
+const { error } = NAMESchema.validate(req.body);
+
+if(error) {
+	//statement//
+	throw new Error();
+}
+
+we can also have this middleware in separate file and we can run that middleware first and then we can run it
+
+
+
+SECTION 44 		RELATIONSHIPS WITH MONGO	MONGO RELATIONSHIP CODE
+
+Document Schema is the overall big Schema which we write and this Schema's are given an ID and also we can see that
+when we have nested inner object pairs or say as nested Schema it also give us an ID which means mongoose treats 
+the inner Object pair as an separate Schema 
+
+and we can also embed other Schema inside a Schema by defining them inside or calling them by their name
+
+const userSchema = new mongoose.Schema({
+    first: String,
+    last: String,
+    addresses: [
+        {
+            _id: { id: false },
+            street: String,
+            city: String,
+            state: String,
+            country: String
+        }
+    ]
+})
+
+When we run the above code we can see that we will get two different Id one for overall Schema and another for Address
+this what i tired to explain you in the above para
+
+we can also TURN off this by typing
+	_id: { id: false }, 
+			as the first key value pairs
+
+
+
+
+One to Few
+	
+const addAddress = async (id) => {
+    const user = await User.findById(id);
+    user.addresses.push(
+        {
+            street: '99 3rd St.',
+            city: 'New York',
+            state: 'NY',
+            country: 'USA'
+        }
+    )
+    const res = await user.save()
+    console.log(res);
+}	
+
+
+One to Many
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1501 @@
+The basic building blocks are 
+Number
+String
+Boolean
+Null
+Undefined
+REPL
+read
+evualte
+print
+loop
+
+
+
+
+console.log()
+console.warn()
+console.error()
+alert()
+prompt()
+parseInt()
+
+in string while calling by index we cannot change its original value say as toUpperCase or say as Replace a letter
+array
+array = []
+array.indexoF()
+array.lenth()
+.toUpperCase()
+
+array.reverse()
+	 
+array.push(arg)
+push add to the last of array
+array.pop() 
+pop take from the last of array
+
+shift() take from the start of the array
+unshift(arg) add to the starting of the array
+
+array.concat(array1)
+	array+array1
+array.slice(?start,?end) does not change or alter the existing array
+
+array.splice(start, ?count_delete, ?Items) alters the original array this is used to delete or replace in an array
+
+if 
+else if 
+else
+
+while loop
+switch case
+break
+
+for loop
+
+for(var of arrname)
+for(var in listname)
+Object.key(name)
+Object.value(name)
+Object.entries(name)
+
+
+to find a not a number
+we can use Number.isNaN() will give you true if its NaN
+
+both way of defining is possible 
+
+function function_name(arg){
+}
+
+const function_name = function (){
+}
+
+scoped function something declared inside the function lies inside a function cannnot be called outside the function
+
+blocked function is something that if declared in a for loop or if condition those die as soon as the condition die
+to overcome this block function we can use the var datatype
+
+lexical scope is nested function which the parent has the declared value in them and can be called by the child and is used
+
+higher order function
+function as a arg
+function calltwice(func){
+func();
+func();
+}
+function rolldice(){
+	const roll=math.floor(math.random()*6)+1;
+console.log(roll)
+}
+calltwice(rolldice)
+
+
+return a finction as a value which can be stored in another variable and used to referencing
+
+storing a function inside a method or list
+const square = {
+    area : function (side){
+        return (side*side);
+    },
+    perimeter : function(side){
+        return (side*4);
+    }
+}
+this above code can also be written as below
+const square = {
+    area(side) {
+        return (side*side);
+    },
+    perimeter(side){
+        return (side*4);
+    }
+}
+
+"This" the key word
+
+const person {
+	first:'akhshy',
+	last: 'ganesh',
+fullname(){
+	return '$(this.first) $(this.last)'
+}
+}
+person.fullname(); //"Akhshy Ganesh"
+person.Last = 'plant';
+person.fullname(); "akhshy ganesh"
+
+person.fullname means the fullname is taken inside the person function/method and searched for a valid value in them
+if found it returns the value "this" keyword is used to refernce the exact value in them 
+if no left value is given like as .fullname than it goes to window main object to search the fullname 
+
+calling this has a default value that is pointed to the window object 
+
+WINDOW is a object that is the top level object where all other function live in them when ever we start the bowser 
+this window is started for example alert is function inside the window object 'window' 
+
+try catch block
+try{
+
+}catch{
+
+}finally{
+
+}
+try block cannot stand alone without the catch block 
+we can catch the error using the (e) in the catch block
+
+ARRAY ELEMENTS 
+that is there are many function key that can be used in array some of them are 
+
+we can also chain them all for a single operation also 
+like nums.filter(n => (//statement)).map(n => (//statement))
+	
+forEach
+	const nums=[9,8,7,6,5,4];
+	nums.forEach(function (n){
+		console.log(n * n);
+ 		//prints:  9,8,7,6,5,4
+	})
+
+map
+	map also does the same as forEach runs in the array but the thing is it creates a new array and can be stored separately 
+	const nums=[9,8,7,6,5,4];
+	const sq = nums.map(function (n){
+		return (n * n);	
+	})
+filter
+	filter is used to create a new array without changing the orignal array
+	to work with this we must use a call function that is it should return a true or false value alone
+	numbers = [3,54,564,3,32,4,3,12,5,6,7,8,89]
+	const bigvalue = numbers.filter(n => {
+		return n < 10; //true or false
+	})
+
+excercises 
+const validUserNames=['mark','staceysmom1978','q29832128238928'];
+validUserNames.filter((name) => (name.length<10));
+
+find
+
+
+reduce //rewatch video 229
+
+
+execute a reducer function on each elements of the array resulting in single value
+[].reduce((accumulator, currentValue) => {
+	return accumulator + currentValue;
+});
+we can also fix a predefined value for the accumulator to start with
+say as like a initial value to the sum we do it by 
+const evens = [2,4,6,8];
+even.reduce((sum,num) => sum+num, 100)
+this 100 is the predefined or the initial value of the sum 
+
+
+some & every // only returns true or flase
+SOME similar to every, but returns true if ANY of the element pass the test function
+EVERY  tests whether all the elements in the array pass the provided function, it returns a boolean value
+
+Arrow function
+syntacilly compact alternative to regular function expression
+	const square = function(x){
+		return x*x;
+	}	
+
+	const square = (x) => {
+		return x*x;
+	}
+	const rolldie = () => {
+		return math.floor(math.random()*6)+1;
+	}
+
+implicit return
+only can be used in arrow function
+	const rolldie = () => ( 
+		math.floor(math.random()*6)+1; 
+	)
+	const rolldie = () => math.floor(math.random()*6)+1 
+
+USING ARROW FUNCTION WITH IMPLICIT RETURN 
+	const sq = nums.map( n => {
+		`${n*n}`
+	})
+can also be written as 
+	const sq = nums.map(n => `$(n*n)`)
+
+In arrow function when we use `THIS` key word we can face soke issues that is mostly like the scope this refers will be to window 
+it will scope towards the function or parent element that is supposed to be 
+VIDEO NO 230
+usually to define function we dont use arrow function we use regular function
+but when we need this not to change cont. we can use arrow function.
+
+
+setTimeout
+	setTimeout( () => {
+		console.log("HELLO!!!")
+	}, 3000)
+example
+	console.log("HELLO!!....")
+	setTimeout(() => {
+		console.log("...are you still there?")
+	}, 3000)
+	console.log("Goodbye!!")
+note that output 
+	HELLO!!....
+	Goodbye!!
+	...are you still there?
+even when you give the timeout function in between code doesnt wait till the time completes but
+other code will run normally without any delay
+
+setInterval
+this is used to run a particular value cont. with a time interval in between 
+this setInterval has there own ID for the purpose of turning them off
+knowing the interval is important because once the setinterval is run it doesnt stop by its own we must use
+clearInterval synt to stop it 
+	setinterval(() => [
+		console.log(math.random())
+	},2000);
+
+	const id = setinterval(() => [
+			console.log(math.random())
+		   },2000);
+
+console
+	id
+	clearInterval(id)
+
+
+default params(parameter arg)
+this is give a default arg value that is choosen when a user doesnt give a params to calculate
+this example is old method to declare a default value
+	function rolldie(numSides){
+		if(numSides === undefined){
+			numSides = 6;
+		}
+		return math.floor(math.random()*numSides)+1;
+	}
+New way of declaring default value is 
+	function rolldie(numSides = 6){
+		return math.floor(math.random()*numSides)+1;
+	}
+main thing to remember is we cannot define a default value in the begining becuase JS will not know what value is
+for what say as
+function greet(msg ="Hey There",person){
+	console.log(`$(msg),$(person)!`)
+}
+console
+greet(AKHSHY)
+o/p	AKHSHY,undefined
+this happens because the user gives a name value and thinks that the msg will point to the defualt value but 
+as we have said before JS will not know what is msg and is value as we written msg first it take akhshy as the msg and
+gives undefined to person to overcome this we can write our program as 
+function greet(person,msg ="Hey There"){
+	console.log(`$(msg),$(person)!`)
+}
+console
+greet(AKHSHY)
+o/p	Hey There, AKHSHY!
+
+
+
+spread 
+... we use this spread to give multiple value one by one say as removing the square brackets  
+example in array
+nums = [34,5,46,2,123,3432,454,2532,23,233,1,1325,764]
+console.log(nums);
+o/p 	[34,5,46,2,123,3432,454,2532,23,233,1,1325,764] with array function
+console.log(...nums)
+o/p	34 5 46 2 123 3432 454 2532 23 233 1 1325 764	with spaces in between them
+console.log('hello')
+o/p	hello
+console.log(...'hello')
+o/p	h e l l o 		// console.log('h','e','l','l','o')
+	
+we can also use the spread to add a new array its like a copy
+const i=[1,2,3,4]
+const j=[5,6,7,8]
+[...i,...j]	//combine
+o/p	[1,2,3,4,5,6,7,8]
+const k = [...i] //copy
+
+example in object
+i ={a:1,b:2,c:3}
+{...i}
+o/p	{a:1,b:2,c:3}
+j= {c:4,d:5,e:6}
+{...i,...j}
+o/p	{a:1,b:2,c:4,d:5,e:6} 	// you can see that the value of c has change because both i j had the same key in them with different value
+	this cause them to fight and the last value wins and thus c gets 4 as value
+
+we can also use this spread object within array
+for example
+{...[""hello]}
+o/p	{0:'h',1:'e',2:'l',3:'l',4:'o'}	this key are taken from their index and values can be noted by index
+ 
+
+rest params
+creates its own arguments like stores how many we give can be stored and is used for calculation for example
+function sum(){
+	console.log(arguments)
+}
+o/p	sum(2,3,4,5,6)
+	arguments(2,3,4,5,6) 	// all array function cannot be done
+arguments are created for us but it does help us using all the array method such as reduce, etc so we use rest params that is nothing but . . .
+function sum(...num){
+	return num.reduce((total,el) => total+el)
+}
+o/p	sum(2,3,4,65,3,212)
+	[2,3,4,65,3,212] //array function can be done here
+
+Destructuring array
+	this is used to sinlge out the value from the array this doesnt alter the array value which only copies value to be single outted
+for example we can see that
+	const scores = [9000,8000,7000,6000,5000]
+	const highScore = scores[0];
+	const secondHighScores = scores[1]; 	//this is completely valid but we have much shorter way of using this 
+	o/p	highScore = 9000
+		secondHighScores = 8000
+
+that is by having destructuring array in them
+	const [gold,silver,bronze] = scores;
+o/p	gold	9000
+	silver	8000
+	bronze	7000
+we can use the rest params inside the destructuring array that is by using the three dots in last of the array
+	const [gold,silver,bronze,...everyoneElse] = scores;
+o/p	gold	9000
+	silver	8000
+	bronze	7000
+	everyoneElse	6000	5000
+
+Destructuing Objects
+this most commonly used in JS because we here refer object as the {key: value} elements where the value is called with name.key 
+for accessing data from them but using destructuring object we can store or copy the elements just bu saying the key value alone
+which by itself create a variable and stores the value for us and can be called for later uses
+const num {
+	a:1,
+	b:2,
+	c:3,
+	d:4,
+	e:5
+}
+const {a, b, c} = num;
+o/p	a	1
+	b	2
+	c	3
+
+here we can also give the variable name by simply adding by :variablename we want inside the { }
+const {a:one, b:two, c:three} = num;
+o/p	a	undefined error
+	one	1
+	two	2
+	three	3
+here the one two three are the variable names which we have created to store the values in them this is much shorter way of storing
+we can also give default value which will be showed if the object doesnt hold the key that is searched for 
+const {a:one, b:two, c:three, e:six = 'N/A'} = num;
+o/p	a	undefined error
+	one	1
+	two	2
+	three	3
+	six	N/A
+Destructuring Params
+	We also use this in functions where we call teh value from the object by name.key we can destructure them 
+function allValue(num) {
+	return `${num.a}${num.b}`
+}
+Instead we write the by using destructuring params 
+
+function allValue(num) {
+	const {a,b}=num;
+	return `${a}${b}`
+}
+
+--------------------------------------------------------------------------------------------------------------------
+DOM
+---------------------------------------------------------------------------------------------------------------------
+Document
+window
+	
+	if we see the documents we can have a lot of or day as list of many words these all are object that is created by the bouser
+every object has its own abject values 
+	
+document.all
+	we can alter the content from the JS without opening the Html sheet itself like 
+document.all[10].innerText = "AKHSHY"
+
+so to call the elements for using function we use two steps such as select and manupilate
+	document.getElementById()
+	document.getElementByTagName()
+	document.getElementByClassName()
+we can also ask for the actual object created by the bowser by saving the value by
+	const val = document.getElementById('value')
+we can open the object value and see their object list this list contains children, parent, sibling can be used to select also
+
+we can use this storing variabke for further manipulations like
+	const allImages = document.getElementsByTagName('img');
+
+for(let img of allImages){
+	img.src = '';
+	img.alt = 'same name';
+}
+The value we get by are named as elements that is why we use the getElementsBY
+
+QUERY SELECTOR
+Here is an alternating methos for above syntax that is nothing much than changing the syntax and having single syntax for all typr
+of selections say as bytagName, byId, byClassName
+	document.querySelector('h1');		elements
+	document.querySelector('#val');		id	
+	document.querySelector('.color');	class
+this querySelector gives the first matching elements alone normally but we can also get other value
+	document.querySelector('h1.nth-type-of(2)');	//second h1 value is selected 
+	document.querySelector('a[title='titlename']');
+
+Query Selector All
+	this syntax is used to select all the elements with the same name in them
+	this is given as collection of the elements
+	
+const links = document.querySelectorAll('p a');	// here we select all the anchor tags inside the p tag get all the elements in collectiong
+
+for(let link of links){		// here we go on all the elements that is collected by using for loop
+	console.log(link.href)	//we print the href 
+}
+
+Prperties & Methods
+
+classList
+getAttribute()
+setAttrribute()
+appendChild()
+append()
+prepnd()
+removeChild()
+remove()
+createElement()
+innerText
+textContent
+innerHTML
+value
+parentElement
+children
+nextSibling
+previousSibling
+style
+
+to get the elements we 
+const h1 = querySelectorAll('h1')
+h1.dir	//prints the collectio of elements
+	
+innerText 	is nothing but the text that is inside it which will be displayed in the bowser this also means if some thing is given as display = none
+		it wont be returned in innerText
+		
+textContent 	might be looking similar but it shows us with some line breaks where does this line breaks come??
+		this all comes from the HTML sheet but what is more important is textContent shows all the content present in HTML even if display = none
+
+innerHTML 	this is used to give HTML code from the JS without opening the html sheet
+	document.querySelector('h1').innerHTML = <h2>'X'</h2>
+	document.querySelector('h1').innerHTML += <sup>2</sup>
+o/p	x 2
+
+Attributes
+	we can change the ID and Class name by using attribute
+document.querySelector('#banner).id = 'changedname'
+
+getAttribute()
+	this is used to take the exact content from the HTML sheet 
+setAttribute('href','www.google.com');
+
+to get the computed style we can use
+window.getComputedStyle()//.color//;
+	
+classList
+	this is used to add class easy to the HTML sheet
+h1.classList.add()
+h2.classList.remove()
+
+Traversing parent/child/sibling
+	const firstbold = documentSelector('b')
+	firstbold	// b
+	firstbold.parentElement		//above b
+	const paragraph = firstBold.parentElement
+	paragraph.children	//gives me the collection of the children present in the paragraph
+	paragraph.children[0].parentElement	//gives me the same paragraph
+
+Sibling
+	nextSibling
+	previousSilbing 
+	cannot be used to for modification of the classes so we use 
+
+	previousElementSibling 	nextElementSibling
+
+CREATE ELEMENTS
+
+document.createElement(' ')
+	this is same as that of setAttribute we a predefined tag can be set with value but new element cannot be created 
+so we use this createElement to create a new element and can be add to the html sheet
+	we can use appendChild(var) and we also use a .classList.add(' ') to class names
+const newH3 = document.createElement('h3')
+	newH3	o/p	<h3></h3>
+	newH3.innerText = 'i am new!'
+	document.body.appendChild(newH3);
+
+APPEND 
+	 we use this inst of innerText ,
+	can be used to add content directly to the html sheet by simply giving the querySelector().append('i am new !) 
+but where as we cannot use appendChild becuase it doesnt know the child of it we can also add one or more content
+
+	const p = document.querySelector('p');
+	p.append('i am new!');
+	p.append('i am new!','i am also new');
+
+PREPEND	
+	this is exactly the same we see in append
+	p.prepend('I am new in starting!');
+
+targetElement.insertAdjacentElement('where','element')
+	This works same as the nextElementSibling and previousElementSibling
+	but little different in syntax
+note	where: beforebegin	afterbegin	beforeend	afterend
+
+after 
+	the most simple you can see it all thats just one word after
+	const h3 = document.querySelector('h3');	
+	h1.after(h3);
+before	
+	same as the after
+
+removeChild
+	this is old one where it is supported in all the bowser and this is used to delete total content but the problem
+is if we want to remove the same element we need to use the syntax as
+	h3.parentElement.removeChild(h3);
+
+remove
+	but now we have the simple that is 	
+	const img= document.queryselector('img')
+	img.remove();
+
+
+
+---------------------------------------------------------------------------------------------
+EVENT LISTENERS
+----------------------------------------------------------------------------------------------
+we have a lot of window listener such as 
+clicks
+drags
+drops
+hover
+scrolls
+form
+	submission
+key presses
+focus/blur
+mouse wheel
+double click
+copying
+pasting
+audio start
+screen resize
+printing
+
+onclick
+	this is a simple eventlistener most commonly used for the button
+
+onmouseenter
+	this is used to work with mouse cursor hovering on the content to do the function
+
+addEventListener
+inline or like onclick methods are fine but the best way of writing is by using addEventListener that works just same as the inclick method but the syntax is differrrent
+
+	const btn = document.querySelector('button');
+	btn.addEventListener('click',function () {
+		alert('you got it!');
+	})
+why using this method is prefered because when we have two function that is to be executed to same button or like element our normal onclick property doesnt work
+that is we cant have more than one property for examplee
+	function twist() {
+	console.log("twist")
+	}
+	function shout() {
+	console.log("Shout")
+	}
+	const tasButton = document.querySelector('button');
+	tasButton.onclick = twist;
+	tasButton.onclick = shout;
+	o/p	shout
+		shout
+what happens here we only can see the last function name we assigned to the button this why normal property us not preferred 
+where as when we use the addEventListener can have as many as call backs to single button
+	tasButton.addEventListener('click',twist)
+	tasButton.addEventListener('click',shout)
+we also remove addEventListener by some syntax this is done by some option in addEventListener
+this will be so handy when we want to remove the event without removing the code on that time addEventListener is handy
+
+we have lot of option that can be used in addEventListener
+ {once: true}
+ {capture }
+	etc see in mdn
+
+EVENts & THIS keyword
+	the only place where i see this keyword to be so simple is only here as you can see the example
+makeRandColor is a function we created to set random RGB color 
+	const btns = document.querySelectorAll('button');
+	for(let btn of btns){
+	btn.addEventListener('click',function(){	
+		btn.style.backgroundColor = makeRandColor();
+	})
+	}	
+	const h1s = document.querySelectorAll('h1');
+	for(let h1 of h1s){
+	h1.addEventListener('click',function(){
+		h1.style.backgroundColor = makeRandColor();
+	})
+	}
+you can see that the above function has the same code inside them but if we create a common function having that one line will it work 
+no it wont because when you see that it has the h1. and btn. which two different pointing elements so we cant have one singlw pointing to two different things
+so thats why we use "this" key word where we dont specify the pointing element instead we give this it looks like
+	const btns = document.querySelectorAll('button');
+	for(let btn of btns){
+	btn.addEventListener('click', colorize)
+	}	
+	const h1s = document.querySelectorAll('h1');
+	for(let h1 of h1s){
+	h1.addEventListener('click',colorize)
+	}
+	function colorize() {
+		this.style.backgroundColor = makeRandColor(); //this function here calls the pointing element when written inside the spec element function
+	}
+
+Event Objects & keyboard Events
+	as the name itself says its an object created by bowser for us okay now let see how to get it
+	document.querySelector('button').addEventListener('click',function(evt){ //this evt is the event object normally written as event or evt or e
+	console.log(evt);
+	}
+what this does is it constructs object automatically for example it has many objects like clientX,clientY, key, code, eventObject
+when we are working with keyboard we need the eventObject to know what we are clicking like what buton it is 
+to find it we need this eventObject	doucment.querySelector('input').addEventListener('keydown',function(evt){console.log(evt.key);})
+
+we can also have if else statements to work only when particular buttons are pressed
+	window.addListener('keydown', function(){
+	switch(e){
+		case 'ArrowUp':
+			console.log('up');
+			break;
+		case 'ArrowDown':
+			console.log('down');
+			break;
+		case 'ArrowLeft':
+			console.log('left');
+			break;
+		case 'ArrowRight':
+			console.log('right');
+			break;
+		
+	}
+	})
+here the above example tells us clearly that the console.log is carried out only if these switch cases are passed other wise it simply leaves or ignores it
+
+Form Event & preventDefault
+	normally a form with button will take us to another page like what ever is in the action of form 
+	so it prevent the default working we can include e.preventDefault() in javascript
+
+value
+	the value is attribute to get the value from input box and can be stored somewhere
+
+ELEMENTS
+elements are used to get the value easy or to select them easily 
+in form we go to directly to elements that it contains and can easily by called with their values
+for example 
+const tweetForm = document.querySelector("#tweetForm");
+tweetform.addEventListener('submit',funtion(e){
+	//line 1//			const usernameInput = document.querySelectorAll('input')[0];
+	//line 2// 			const tweetInput = document.querySelector('input')[1];
+	//line 3//			console.log(tweetForm.elements.username.value);
+	//line 4//			console.log(tweetForm.elements.tweet.value);
+})
+in the above code you can see line 1 and line 3 are the but the way of approach is different by elements object its 
+so easy to go and get the value and so we use the elements 
+
+CHANGE & INPUT
+
+the main or most commonly should use event is INPUT
+why because when we use the change or keydown or keyUp it works but when the user uses copy paste or does the input with voice over it doesnt trigger
+also change input only occurs when you blur it out
+	blur is nothing but if go away from it like leaving a input clicking outside the input
+and change is not good input event
+
+so we can use the INPUt event
+	here it also knwows when to fire the function because when we click the shift key or like arrow key it doesnot fire the function 
+	this input event only trigger when you press avalid key and that to happens only if the input is alters 
+	in input elemenwe also have a data object which is exact data at that point but most commonly we dont use this 
+and so using INPUT event is best to take the value lively 
+
+EVENT BUBBLING
+	this is like doing something to the child which affects the parent elements also 
+	where like like we have a section with event listener with child of p with event listener of onlcick to it and also we have child of p as button with event onclick 
+code example //this is not cool for study purpose we are doing inline style
+	<body>
+		<section onclick="alert('Section clicked')">
+			<p onclick="alert('para clicked')">
+				<button onclick="alert('button clicked')"> 
+					click me!
+				</button>
+			</p>
+		</section>	
+	</body> 
+when we click the section 	o/p	section clicked
+when we click para		o/p	para clicked	section clicked
+when we click the button 	o/p	button clicked	para clicked	section clicked
+	what happens here this is the event bubbling here when we get the event of parent it does do anything just acts normal but
+	when the child is called and if the parent also has a eventListener than this problem occurs it also gets triggered
+to stop this we need the event object which has a method e.stopProgation();
+solution E.STOPPROGATION():
+
+-------------------------------------------------------------------------------------------------------------------
+EVENT DELEGATION
+-------------------------------------------------------------------------------------------------------------
+	normally when an eventlistener is created in js code it it applied only when the code was written 
+	this eventlistener wont go to newly created elements for example see video 265
+to get this event delegate is like the main thing is target because when you see the video new tweets are treated as the child of ul
+but these tweets cannot access any eventlistener because li's are created afterwards and to give them this eventlisteners action we need
+target element and to use this target we need to start it from parent and get the e from function and use it as e.target and we can remove
+ 
+nodeName is a node which inside the ul parent and the nodeName gives the name
+
+-----------------------------------------------------------------------------------------
+PROMISE AND RELATED THINGS LIKE ASYNC
+----------------------------------------------------------------------------------------
+	Normally a promise is used where certain output is expected to give two output that is like resolve or reject
+this is so common because when you request the server the server might give you data or sometimes it reject may be due various factor
+but in this you can see that there are two outputs that can be faced 
+so to write code normally a programmer will write it as
+	const getDataFromServer = ('url','received','timeout')=>{
+		setTimeout(()=>{
+			const rand = Math.random();
+			if(rand<0.5){
+				return recieved (console.log(url));
+			}else{
+				return timeout(console.log('no data');
+			}
+	})
+	}
+as you can see there are two expected output which only one is returned
+and this commonly happens and seems completely fine but when you start to nest things like one response is important to activate next one everything goes into nested formate
+which makes it completely difficult to lool into
+so we use this promise
+	// THE CALLBACK VERSION
+const fakeRequestCallback = (url, success, failure) => {
+    const delay = Math.floor(Math.random() * 4500) + 500;
+    setTimeout(() => {
+        if (delay > 4000) {
+            failure('Connection Timeout :(')
+        } else {
+            success(`Here is your fake data from ${url}`)
+        }
+    }, delay)
+}
+// THE PROMISE VERSION 
+const fakeRequestPromise = (url) => {
+    return new Promise((resolve, reject) => {
+        const delay = Math.floor(Math.random() * (4500)) + 500;
+        setTimeout(() => {
+            if (delay > 4000) {
+                reject('Connection Timeout :(')
+            } else {
+                resolve(`Here is your fake data from ${url}`)
+            }
+        }, delay)
+    })
+}
+
+
+fakeRequestCallback('books.com/page1',
+    function (response) {
+        console.log("IT WORKED!!!!")
+        console.log(response)
+        fakeRequestCallback('books.com/page2',
+            function (response) {
+                console.log("IT WORKED AGAIN!!!!")
+                console.log(response)
+                fakeRequestCallback('books.com/page3',
+                    function (response) {
+                        console.log("IT WORKED AGAIN (3rd req)!!!!")
+                        console.log(response)
+                    },
+                    function (err) {
+                        console.log("ERROR (3rd req)!!!", err)
+                    })
+            },
+            function (err) {
+                console.log("ERROR (2nd req)!!!", err)
+            })
+    }, function (err) {
+        console.log("ERROR!!!", err)
+    })
+as you can see things getting up nested one inside another and this is how it all works 
+where as when we use promise we can have advantages of
+
+.THEN(()=>{})
+.CATCH(()=>{})
+
+fakeRequestPromise('yelp.com/api/coffee/page1')
+    .then(() => {
+        console.log("IT WORKED!!!!!! (page1)")
+        fakeRequestPromise('yelp.com/api/coffee/page2')
+            .then(() => {
+                console.log("IT WORKED!!!!!! (page2)")
+                fakeRequestPromise('yelp.com/api/coffee/page3')
+                    .then(() => {
+                        console.log("IT WORKED!!!!!! (page3)")
+                    })
+                    .catch(() => {
+                        console.log("OH NO, ERROR!!! (page3)")
+                    })
+            })
+            .catch(() => {
+                console.log("OH NO, ERROR!!! (page2)")
+            })
+    })
+    .catch(() => {
+        console.log("OH NO, ERROR!!! (page1)")
+    })
+
+even in this you can see nesting happens and so programmer used to give a single catch block which catches all th error and makes the code look simpler
+but to achieve this the code as to be written like this with a return keyword
+fakeRequestPromise('yelp.com/api/coffee/page1')
+    .then((data) => {
+        console.log("IT WORKED!!!!!! (page1)")
+        console.log(data)
+        return fakeRequestPromise('yelp.com/api/coffee/page2')
+    })
+    .then((data) => {
+        console.log("IT WORKED!!!!!! (page2)")
+        console.log(data)
+        return fakeRequestPromise('yelp.com/api/coffee/page3')
+    })
+    .then((data) => {
+        console.log("IT WORKED!!!!!! (page3)")
+        console.log(data)
+    })
+    .catch((err) => {
+        console.log("OH NO, A REQUEST FAILED!!!")
+        console.log(err)
+    })
+----------------------------------------------------------------------------------------
+ASYNC WITH PROMISES
+------------------------------------------------------------------------------------------
+
+we have seen how the syntax is for promise that is new promise ((resolve,reject)=>{ })
+but when  we use the async function the JS secretly creates a promise function without us writing promise syntax
+and it use special keyword like 
+
+RETURN is for resolved issues
+THROW is for rejected ones
+AWAIT	is to wait untill the promise is completed and than it goes to next function
+
+first let us see the return and throw keywords in action as i said earlier we dont need to write promise syntax
+all we need to do is give the prename to function as async
+	const hello = async () =>{
+	}
+this is how you write a async function
+to get the resolved and rejected returns we use keywords as 
+return and throw
+	const hello = async () =>{
+		return "i am resolved";	
+		throw "i am rejected";
+	}
+const login = async (username, password) => {
+    if (!username || !password) throw 'Missing Credentials'
+    if (password === 'corgifeetarecute') return 'WELCOME!'
+    throw 'Invalid Password'
+}
+
+login('todd', 'corgifeetarecute')
+    .then(msg => {
+        console.log("LOGGED IN!")
+        console.log(msg)
+    })
+    .catch(err => {
+        console.log("ERROR!")
+        console.log(err)
+    })
+
+now lets add the new line that is await keyword to the syntax
+const delayedColorChange = (color, delay) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            document.body.style.backgroundColor = color;
+            resolve();
+        }, delay)
+    })
+}
+delayedColorChange('red', 1000)
+    await delayedColorChange('orange', 1000)
+    await delayedColorChange('yellow', 1000)
+    await delayedColorChange('green', 1000)
+    await delayedColorChange('blue', 1000)
+    await delayedColorChange('indigo', 1000)
+    await delayedColorChange('violet', 1000)
+this normally runs the code and when it recives as return statement in the promise or async
+function it runs the next function normally this await waits for the process to complete
+
+
+but the problem here is we cannot catch the error using this await 
+
+const fakeRequest = (url) => {
+    return new Promise((resolve, reject) => {
+        const delay = Math.floor(Math.random() * (4500)) + 500;
+        setTimeout(() => {
+            if (delay > 2000) {
+                reject('Connection Timeout :(')
+            } else {
+                resolve(`Here is your fake data from ${url}`)
+            }
+        }, delay)
+    })
+}
+
+
+async function makeTwoRequests() {
+    try {
+        let data1 = await fakeRequest('/page1');
+        console.log(data1);
+        let data2 = await fakeRequest('/page2');
+        console.log(data2);
+    } catch (e) {
+        console.log("CAUGHT AN ERROR!")
+        console.log("error is:", e)
+    }
+
+}
+
+and so we need to write the program in try catch blocks where the error that is rejection is captured by the catch block of try catch
+and by this we can handle the error
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+AJAX AND API
+----------------------------------------------------------------------------------------------------------------------------------------------
+AJAX - ASYNCHRONOUS JAVASCRIPT AND XML
+
+IT CAN HAVE WHOLE DIFFERENT OWN TAGS
+for example
+		<QandA>
+			<Q>What is your name</Q>
+			<A>I am akhshy</A>
+		</QandA>
+
+requests made can be of XMLHTTP FETCH AXIOS
+
+API - APPLICATION PROGAMMING INTERFACE
+
+AJAJ - 	ASYNCHRONOUS JAVASCRIPT ADN JSON
+JSON - JAVA SCRIPT OBJECT NOTATION
+	every key in the object should have " " and cannot be given without them
+	array	string	number	true	false	null
+we have a method to change the string object that we get from the server 
+the method name is 
+
+JSON.parse(ele);
+
+if we have the info in JS object to convert it to JSON we have 
+
+JSON.stringify(ele)
+status code are the numeric code that is to indicate directly from server to the user end what happened with the site
+informational responses (100-199)
+successfull responses (200-299)
+redirects(300-399)
+client errors(400-499)
+server errors(500-599)
+
+header
+	are the meta data of the resqust or even can be for sending data
+
+content-type they are many types like
+		text/html
+		application/json
+		text/plain
+
+-------------------------------------------------------------------------------------
+QUERY STRING PARAMS
+
+/search?q=:query
+this like the same link with just adding content to pages 
+usually API expects us to use the QueryString for searching
+query string is variable that we provide 
+this is all different end point using this QueryStr̥ing usually it /search?q=:query	
+for multiple values we can use & which will be used if present or just leaves if not present
+
+---------------------------------------------------------------------------------
+XMLHttpRequest
+--------------------------------------------------------------------------------
+const req = new XMLHttpRequest();
+
+req.onload = function () {
+    console.log("ALL DONE WITH REQUEST!!!")
+    const data = JSON.parse(this.responseText);
+    console.log(data.ticker.price);
+}
+
+req.onerror = function () {
+    console.log("ERROR!!!")
+    console.log(this);
+}
+
+req.open('GET', 'https://api.cryptonator.com/api/ticker/btc-usd')
+req.send();
+
+this is old way of using API for calling the server or for requesting the server for an data
+in early stages they were using XMLHttpRequest which doesnot support promises and its all callback function which goes to callback Hell for nesting up things
+
+but in new stages we have our fetch option that is build over the promise and is so simple to work with 
+
+fetch('https://api.cryptonator.com/api/ticker/btc-usd')
+    .then(res => {
+        console.log("RESPONSE...", res)
+       
+    })
+    .catch(e => {
+        console.log("OH NO! ERROR!", e)
+    })
+
+as you can that the above code has .then adn .catch which is coming from the promise 
+but there is problem here that is fetch does wait a long time till all the data is downloaded say as when the server starts to send
+the meta header data the fetch closes and tell the promise to resolve and by doing this just the above code is not enough to get the data
+and so we use the return and keyword of 
+
+		json()
+
+
+fetch('url')
+	.then(res =>{
+		console.log("Response, waiting",res);
+		return res.json();	
+})
+	.then(data =>{
+		console.log("Data parsed..")
+		console.log(data.ticker.price)
+})
+	.catch(e =>{
+		console.log("OH NO ERROR",e);		
+})
+
+and in other terms even this can be written in async promise and that is way to smaller than this
+const fetchdata = async () => {
+    const sitedata = await fetch('https://api.cryptonator.com/api/ticker/btc-usd')
+    console.log(sitedata);
+    const data = await sitedata.json();
+    console.log(data);
+}
+button.addEventListener('click', fetchdata);
+ 
+in order to catch the error we use this try catch block 
+const fetchBitcoinPrice = async () => {
+    try {
+        const res = await fetch('https://api.cryptonator.com/api/ticker/btc-usd');
+        const data = await res.json();
+        console.log(data.ticker.price)
+    } catch (e) {
+        console.log("SOMETHING WENT WRONG!!!", e)
+    }
+}
+
+
+---------------------------------------------------------------------------------------------------------------
+AXIOS
+--------------------------------------------------------------------------------------------------------------
+
+axios is nothing but a library which is written by other and we can call them and use it 
+axios shortly does this we have already seen that we need two promise to get full data to be downloaded but in axios does  this is done in single step
+axios.get('url')
+
+axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
+    .then(res => {
+        console.log(res.data.ticker.price)
+    })
+    .catch(err => {
+        console.log("ERROR!", err)
+    })
+
+this is so simple as we dont have to work or like write two promises one to get header and other to get full data its all in one by axios.get()
+
+we can also use async function for this if we might need to nest things we use async function
+
+const fetchBitcoinPrice = async () => {
+    try {
+        const res = await axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
+        console.log(res.data.ticker.price)
+    } catch (e) {
+        console.log("ERROR!", e)
+    }
+}
+
+------------------------------------------------------------------------------------------------------------
+setting up header using axios
+------------------------------------------------------------------------------------------------------------
+
+setting a new heading in axios is so simple just adding one more params that can be given in the 
+	axios.get('url',{header : {}})
+we can also wite it in a seperate line
+	const config = {header : {Accept : 'application/json'}}
+	axios.get('url',config)
+
+example code
+	const jokes = document.querySelector('#jokes');
+const button = document.querySelector('button');
+const addNewJoke = async () => {
+    const jokeText = await getDadJoke();
+    const newLI = document.createElement('LI');
+    newLI.append(jokeText);
+    jokes.append(newLI)
+}
+const getDadJoke = async () => {
+    try {
+        const config = { headers: { Accept: 'application/json' } }
+        const res = await axios.get('https://icanhazdadjoke.com/', config)
+        return res.data.joke;
+    } catch (e) {
+        return "NO JOKES AVAILABLE! SORRY :("
+    }
+}
+button.addEventListener('click', addNewJoke)
+
+	this above code is DOM code with the API from the dads joke and adds it to the code 
+
+-------------------------------------------------------------------------------------------------------------
+PROTOTYPE
+------------------------------------------------------------------------------------------------------------
+
+normally the prototype has many function which act as a common platform which the function present inside is shared with all the array
+reference to prototype 
+
+but when we add our function it doesnt go inside prototype and its included as a index function
+
+prototype is the one object which is the template object of overall which is shared with all.
+
+we can also add a prototype function that can be created its so simple that is by string.prototype.shout = ()=>{alert("AHAHAHAHA")}
+
+we can also do things like 
+String.prototype.yell = function() {
+	console.log(this) 
+}
+o/p	hello.yell()		string:"hello"
+
+this is not a method that is to be followed jsut we can add them this way also 
+
+to have it as a common function we use the keyword this
+we can also overwrite function that are also there such as push and pop or anything
+
+--------------------------------------------------------------------------------------------------------------------
+difference btw prototype and __proto__
+--------------------------------------------------------------------------------------------
+prototype is the function that we can add function to 
+and the __proto__ is the reference of prototype 
+
+
+-----------------------------------------------------------------------------
+BASIC OF OOPS
+----------------------------------------------------------------------------
+Factory function
+	building up factory is nothing but starting to write a function inside and adding variable to it externally and returning the function 
+at last gives us a factory function
+
+function makeColor (r, g, b){
+	const color = {};
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	return color;
+	}
+the above code is the basic factory function 
+
+we can also have some method inside this function that can use the variable value by using the key value this
+
+function makeColor (r, g, b){
+	const color = {};
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	return color;
+	color.rgb = function() {
+	const {r,g,b} = this;
+//here this above line is know as destructing the value are using the variable by this because the left side of dot is color and color has the
+//variable value r g b and so this keyword works here
+	};	
+	}
+
+we can call this function like storing them in a variable which will inheriate all values
+like
+	cont firstColor = makecolor(35,112,34)
+ and so this above line takes all the values and method from the makecolor object and can be called as
+	firstColor.hex()
+	firstColor.rgb()
+even we can alter the value of the variables that are present inside the makecolor object by simply  
+	firstColor.r = 255;
+the value of r becomes 255 simple as that
+this is not how normally how others do and why is that because 
+
+-----------------------------------------------------
+constructor function
+-----------------------------------------------------
+normally new is an operator
+
+why we come to part is because normally what do we do like if we write a function and we call them anywhere with just the name and the function
+remains common for all execpt the arg 
+but the above method we focused doesnt work that way that is factory function
+	this factory function are created seperately for each time they are called and this can be verified by 
+having two const with same function object connected to it by
+const firstColor = makecolor(123,32,43)
+const black = makecolor(0,0,0)
+
+if we check this in console by 
+	firstColor.rgb === black.rgb 	//here we are simply comparing the method present in the function 
+as we expect that both the variables are assigned to same object function the method must be same but thats not the case here
+we get a output of false because these function are recreated and method are recreated for each and every time
+
+	this why we dont use this factory function and use construction
+
+this all works with the new keyword 
+
+// 1. Creates a blank, plain JavaScript object;
+// 2. Links (sets the constructor of) this object to another object;
+// 3. Passes the newly created object from Step 1 as the this context;
+// 4. Returns this if the function doesn't return its own object.
+
+this is all done implicit with us actually creating them as we did it in factory function
+
+function color(){
+this.r=r;
+this.g = g;
+this.b = b;
+}
+new color(255,34,23)
+
+this function created is set to the prototype itself easy 
+
+and so it become a single function and becomes the common reference
+
+and to create a method we write the function as 
+Color.prototype.rgb = function() {
+	const { r, g, b } = this;
+	return `rgb(${r}, ${g}, ${b})`;
+};
+
+Color.prototype.hex = function() {
+	const { r, g, b } = this;
+	return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+};
+
+Color.prototype.rgba = function(a = 1.0) {
+	const { r, g, b } = this;
+	return `rgba(${r}, ${g}, ${b}, ${a})`;
+};
+
+const color1 = new Color(40, 255, 60);
+color1.hex();
+const color2 = new Color(0, 0, 0);
+color2.hex();
+
+as you can see the above code is completely standing alone like not grouped in adn so we use the class to group them 
+-------------------------------------------------------------------
+CLASS
+---------------------------------------------------------
+Normally we use capital letters in the starting
+	normally here we assign a constructor that automatically runs when ever the class is initiallised
+the new object that is magically created for is name or called by this keyword 
+and this magical object is created only using new keyword
+
+this inside the class refers to only with class and so we can easily destructure it bu const{r,g,b} = this;
+now when we compare them by the method as 
+white.hex === red.hex 	o/p	true	//this is becasue the method is defined inside the prototype and reference are given not the func is recreated
+
+class Color {
+	constructor(r, g, b, name) {
+		this.r = r;
+		this.g = g;
+		this.b = b;
+		this.name = name;
+	}
+	innerRGB() {
+		const { r, g, b } = this;
+		return `${r}, ${g}, ${b}`;
+	}
+	rgb() {
+		return `rgb(${this.innerRGB()})`;
+	}
+	rgba(a = 1.0) {
+		return `rgba(${this.innerRGB()}, ${a})`;
+	}
+	hex() {
+		const { r, g, b } = this;
+		return (
+			'#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+		);
+	}
+}
+const red = new Color(255, 67, 89, 'tomato');
+const white = new Color(255, 255, 255, 'white');
+
+--------------------------------------------------------------------------------------------------
+Extends and Super Keywords
+-----------------------------------------------------------------------------------------------------
+class Pet {
+	constructor(name, age) {
+		console.log('IN PET CONSTRUCTOR!');
+		this.name = name;
+		this.age = age;
+	}
+	eat() {
+		return `${this.name} is eating!`;
+	}
+}
+
+class Cat extends Pet {
+	constructor(name, age, livesLeft = 9) {
+		console.log('IN CAT CONSTRUCTOR!');
+		super(name, age);
+		this.livesLeft = livesLeft;
+	}
+	meow() {
+		return 'MEOWWWW!!';
+	}
+}
+
+class Dog extends Pet {
+	bark() {
+		return 'WOOOF!!';
+	}
+	eat() {
+		return `${this.name} scarfs his food!`;
+	}
+}
+
+------------------------------------------------------------------------------------------
+TERMINAL BACK END CONTENT
+-----------------------------------------------------------------------------------------
+https://git-scm.com/download/win
+to download git and this is becuase the window use the msdoc for terminal and which is not correct for working with 
+
+cd(change dir)	cd ..(backup one level) 	ls(lsiting)	pwd(path with dir)	mkdir(make new dir)	touch	rm(remove) 
+
+we have helping hand that is man short for manual
+
+we can use this know what it does man ls	man cd
+to exit the man page is by pressing q
+	
+this has many flags kind of arg to change the working of the keywords for example
+	ls gives us the list 
+but when we give ls -l which is for long format it gives us full details 
+we can also combine two man flag and can get the output combined 
+
+rm will only delete if the dir is empty and doesnot delete folders if files are inside and so we use
+
+rm -rf (remove all rooted dir)(remove without asking)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  
+
+
+
+
+
+
+
+
+
+
+
